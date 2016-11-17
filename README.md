@@ -1,6 +1,6 @@
 # art-python
 
-Documentation
+# Documentation
 
-Installation
+# Installation
 Comming soon
