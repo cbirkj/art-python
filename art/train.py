@@ -21,27 +21,6 @@ class FuzzyArt:
 		self.ch = np.zeros((len(x)*2,1))
 		self.m = np.zeros((len(x)*2,1))	
 		
-	def match_choice(self,c,norm,normI,normT):
-	
-		"""
-        Checks match criterion
-        Compute choice equation
-        Discovers best choice
-
-        :param norm: minimum of input and templates
-        :param normI: norm of input
-        
-        :return: returns category choice location
-        """
-        
-		self.m[c] = norm/normI
-		if self.m[c] < self.rho:
-			self.ch[c] = 0
-		else:
-			self.ch[c] = norm/(self.beta + normT)
-		
-		return self.ch.argmax(axis=0)	
-		
 	def create(self,I,T,nc,j):
 		"""
 		Create new template
@@ -74,6 +53,27 @@ class FuzzyArt:
 			T[i,cmax] = min(I[i,j],T[i,cmax])
 		return T
 	
+	def match_choice(self,c,norm,normI,normT):
+	
+		"""
+        Checks match criterion
+        Compute choice equation
+        Discovers best choice
+
+        :param norm: minimum of input and templates
+        :param normI: norm of input
+        
+        :return: returns category choice location
+        """
+        
+		self.m[c] = norm/normI
+		if self.m[c] < self.rho:
+			self.ch[c] = 0
+		else:
+			self.ch[c] = norm/(self.beta + normT)
+		
+		return self.ch.argmax(axis=0)
+	
 	def template_options_loop(self,cmax,chmax,ch,nc):
 		
 		"""
@@ -103,8 +103,7 @@ class FuzzyArt:
 			
 			neg += 1
 		
-		return cmax
-			
+		return cmax				
 	
 	def art_train(self,I,T):
 		"""
@@ -124,7 +123,7 @@ class FuzzyArt:
 			nc,j = 1,0
 			
 			while j < len(I[0]):
-			
+				print self.min
 				for c in range(0,nc):
 					''' Initialize chmax and cmax '''
 					chmax = -1
@@ -139,6 +138,8 @@ class FuzzyArt:
 						''' calculate the magnitude of I and T '''
 						normI = I[:,j].sum()
 						normT = T[:,c].sum()
+						
+					print norm/normI
 
 					''' calculate choice & match '''
 					ch = self.match_choice(c,norm,normI,normT)
@@ -167,8 +168,6 @@ def art_train(x,rho=0.9,beta=0.000001,alpha=1.0,nep=1):
 	T = ann.art_train(I,T)
 	
 	return T
-
-
 
 if __name__ == '__main__':
     art_train()
