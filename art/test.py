@@ -6,6 +6,18 @@ import pandas as pd
 
 class FuzzyArt:
 
+	"""
+	Test using ART Neural Network
+		
+	:param y: 			Input data
+	:param I: 			Normalized & Complement Coded Input data
+	:param rho:			Free parameter
+	:param beta:		Choice Parameter
+	:param alpha:		Learning Rate
+	:param nep:			Number of epochs
+
+	"""
+
 	def __init__(self,y,I,rho,beta,alpha,nep):
 		
 		# Parameters
