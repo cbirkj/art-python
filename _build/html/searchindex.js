@@ -1,0 +1,1 @@
+Search.setIndex({envversion:49,filenames:["index"],objects:{},objnames:{},objtypes:{},terms:{content:0,index:0,introduciton:0,modul:0,page:0,requir:0,search:0,thi:0},titles:["Welcome to art-python&#8217;s documentation!"],titleterms:{art:0,document:0,indice:0,python:0,tabl:0,welcom:0}})
