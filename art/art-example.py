@@ -15,12 +15,16 @@ import MySQLdb
 from train import art_train
 from test import art_test
 
-train_data = pd.read_csv('sample-data/train-example.csv').as_matrix()
-test_data = pd.read_csv('sample-data/test-example.csv').as_matrix()
-x = train_data[:,1:3]
-y = test_data[:,1:3]
+#train_data = pd.read_csv('sample-data/train-example.csv').as_matrix()
+#test_data = pd.read_csv('sample-data/test-example.csv').as_matrix()
+#x = train_data[:,1:3]
+#y = test_data[:,1:3]
+
+x = pd.read_csv('sample-data/xor_train.csv').as_matrix()
+x = x[:,0:2]
 
 r = 0.9
 Tmatrix = art_train(x,rho=r) #,beta=0.000001,alpha=1.0,nep=1)
-T = art_test(y,Tmatrix,rho=r) #,beta=0.000001,alpha=1.0,nep=1)
-print T
+print Tmatrix
+#T = art_test(y,Tmatrix,rho=r) #,beta=0.000001,alpha=1.0,nep=1)
+#print T
