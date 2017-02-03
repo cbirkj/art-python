@@ -4,10 +4,22 @@ import math
 import numpy as np
 import pandas as pd
 
+
 class FuzzyArt:
 
-	def __init__(self,x,rho,beta,alpha,nep):
+	"""
+	Tran using ART Neural Network
 		
+	:param x: 			Input data
+	:param rho:			Free parameter
+	:param beta:		Choice Parameter
+	:param alpha:		Learning Rate
+	:param nep:			Number of epochs
+
+	"""
+
+	def __init__(self,x,rho,beta,alpha,nep):
+
 		# Parameters
 		self.rho = rho			# Free Parameter
 		self.beta = beta		# Choice Parameter
@@ -23,7 +35,7 @@ class FuzzyArt:
 		
 	def create(self,I,T,nc,j):
 		"""
-		Create new template
+		Resonance did not occur - create new template
 		
 		:param I:		Input
 		:param T: 		Template
@@ -39,7 +51,7 @@ class FuzzyArt:
 		
 	def update(self,I,T,j,cmax):
 		"""
-		Update new template
+		Resonance did occur - update new template
 		
 		:param I:		Input
 		:param T: 		Template
@@ -109,10 +121,12 @@ class FuzzyArt:
 		"""
 		Train ART - Create Template Matrix
 		
-		:param I:		Input
-		:param T: 		Template
-		:param cmax:	Maximum choice (initialized to be -1)
-		:param chmax:	Match Criterion (initialized to be -1)
+		:param I:			Input Matrix
+		:param T: 			Template Matrix
+		:param cmax:		Max choice (initialized to be -1)
+		:param chmax:		Match Criterion (initialized to be -1)
+		
+		:return T:			Final Template
 		"""
 	
 		''' Set first template as first input '''
