@@ -39,8 +39,19 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.autosummary',
-    'sphinx.ext.intersphinx'
+    'sphinx.ext.intersphinx',
 ]
+
+autodoc_default_flags = ['members']
+autosummary_generate = True
+viewcode_import = True
+numpydoc_show_class_members = False
+numpydoc_class_members_toctree = True
+autodoc_member_order = 'bysource'
+autoclass_content = 'both'
+numfig=True
+numfig_format = {'figure':  'Figure %s', 'table': 'Table %s', 'code-block': 'Listing %s'}
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
