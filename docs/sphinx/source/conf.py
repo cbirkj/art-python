@@ -19,7 +19,8 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('/Users/cbjones/Documents/ML Code/ANN/ART/art-python/art'))
-
+#sys.path.insert(0, os.path.abspath('/art/'))
+#sys.path.insert(0,os.path.abspath('.'))
 
 # -- General configuration ------------------------------------------------
 
@@ -30,7 +31,16 @@ sys.path.insert(0, os.path.abspath('/Users/cbjones/Documents/ML Code/ANN/ART/art
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc']
+extensions = [
+	'sphinx.ext.autodoc'
+	'sphinx.ext.doctest',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.intersphinx'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
