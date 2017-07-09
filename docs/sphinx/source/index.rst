@@ -29,7 +29,7 @@ Run testing code to idenfiy anomalies::
 
 .. toctree::
    :maxdepth: 2
-   :caption: Code:
+   :caption: Source Code:
 
    train
    test
