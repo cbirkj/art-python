@@ -20,7 +20,7 @@ import os
 import sys
 #sys.path.insert(0, os.path.abspath('/Users/cbjones/Documents/ML Code/ANN/ART/art-python/art'))
 #sys.path.insert(0, os.path.abspath('/art/'))
-sys.path.append(os.path.abspath('.'))
+sys.path.append(os.path.abspath('/home/docs/checkouts/readthedocs.org/user_builds/art-python/checkouts/latest/art/'))
 #sys.path.insert(0, '../..')
 
 # -- General configuration ------------------------------------------------
