@@ -32,7 +32,7 @@ sys.path.insert(0, os.path.abspath('/Users/cbjones/Documents/ML Code/ANN/ART/art
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-	'sphinx.ext.autodoc'
+	'sphinx.ext.autodoc',
 	'sphinx.ext.doctest',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
