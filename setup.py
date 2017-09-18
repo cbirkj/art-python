@@ -8,15 +8,14 @@ EXTENSIONS = []
 DESCRIPTION = 'Python package'
 LONG_DESCRIPTION = open('README.md').read()
 AUTHOR = 'ART Developers'
-MAINTAINER_EMAIL = 'cbjones@sandia.gov'
-LICENSE = 'Revised BSD'
-URL = 'https://github.com/sandialabs/art-python'
+MAINTAINER_EMAIL = 'cbirkjones@gmail.com'
+LICENSE = 'MIT'
+URL = 'https://github.com/cbirkj/art-python'
 
 setuptools_kwargs = {
     'zip_safe': False,
     'install_requires': ['numpy >= 1.10.4',
-                         'pandas >= 0.18.0',
-                         'matplotlib'],
+                         'pandas >= 0.18.0'],
     'scripts': [],
     'include_package_data': True
 }
