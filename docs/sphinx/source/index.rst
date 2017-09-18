@@ -33,7 +33,7 @@ Run testing code to idenfiy anomalies::
 
    train
    test
-   intallation
+   installation
    help
    license
 
