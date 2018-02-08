@@ -73,12 +73,10 @@ class FuzzyArt:
 		Checks match criterion
 		Compute choice equation
 		Discovers best choice
-
-        :param norm: minimum of input and templates
-        :param normI: norm of input
-        
-        :return: returns category choice location
-        """
+		:param norm: minimum of input and templates
+		:param normI: norm of input
+		:return: returns category choice location
+		"""
         
         self.m[c] = norm/normI
         
