@@ -4,11 +4,10 @@ import math
 import numpy as np
 import pandas as pd
 
-
 class FuzzyArt:
 
 	"""
-	Tran using ART Neural Network
+	Train using ART Neural Network
 		
 	:param x: 			Input data
 	:param rho:			Free parameter
@@ -18,7 +17,7 @@ class FuzzyArt:
 
 	"""
 
-	def __init__(self,x,rho,beta,alpha,nep):
+	def __init__(self,x,T,rho,beta,alpha,nep,update):
 
 		# Parameters
 		self.rho = rho			# Free Parameter
@@ -32,6 +31,9 @@ class FuzzyArt:
 		self.normT = np.ones((len(x[0])*2,1))
 		self.ch = np.zeros((len(x)*2,1))
 		self.m = np.zeros((len(x)*2,1))	
+		
+		# State of Training
+		self.training_state = update
 		
 	def create(self,I,T,nc,j):
 		"""
@@ -130,14 +132,18 @@ class FuzzyArt:
 		"""
 	
 		''' Set first template as first input '''
-		T[:,0] = I[:,0]
+		if self.training_state:
+			nc = len(T)
+		else:
+			T[:,0] = I[:,0]
+			nc = 1
 		
 		for ep in range(self.nep):
 			''' Initialize number of templates (nc) and loop (j) '''
 			nc,j = 1,0
 			
 			while j < len(I[0]):
-				print self.min
+				#print self.min
 				for c in range(0,nc):
 					''' Initialize chmax and cmax '''
 					chmax = -1
@@ -152,14 +158,11 @@ class FuzzyArt:
 						''' calculate the magnitude of I and T '''
 						normI = I[:,j].sum()
 						normT = T[:,c].sum()
-						
-					print norm/normI
 
 					''' calculate choice & match '''
 					ch = self.match_choice(c,norm,normI,normT)
 					
 				cmax = self.template_options_loop(cmax,chmax,ch,nc)
-				
 				if cmax == -1:
 					''' Create New Template ''' 
 					nc += 1
@@ -173,12 +176,16 @@ class FuzzyArt:
 		return np.transpose(T[:,:nc])
 	
 
-def art_train(x,rho=0.9,beta=0.000001,alpha=1.0,nep=1):
+def art_train(x,rho=0.9,beta=0.000001,alpha=1.0,nep=1,Tm=None,update=False):
 
 	I = np.transpose(np.hstack([x,1 - x]))
-	T = np.ones((len(x[0])*2,len(x)*2))
+	if update:
+		T = Tm.T
+		T = np.hstack([T,np.ones((len(T),1000))])
+	else:
+		T = np.ones((len(x[0])*2,len(x)*2))
 	
-	ann = FuzzyArt(x,rho,beta,alpha,nep)
+	ann = FuzzyArt(x,T,rho,beta,alpha,nep,update)
 	T = ann.art_train(I,T)
 	
 	return T
