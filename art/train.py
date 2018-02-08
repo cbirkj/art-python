@@ -77,9 +77,7 @@ class FuzzyArt:
 		:param normI: norm of input
 		:return: returns category choice location
 		"""
-        
-        self.m[c] = norm/normI
-        
+		self.m[c] = norm/normI
 		if self.m[c] < self.rho:
 			self.ch[c] = 0
 		else:
