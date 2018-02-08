@@ -96,9 +96,6 @@ class FuzzyArt:
 		:param nc:		Number of Categories	
 		
 		:return cmax:	Maximum choice template location		
-		
-		while loop end when
-		-> 
 		"""
 		
 		neg = 0
