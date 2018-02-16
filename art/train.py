@@ -29,11 +29,11 @@ class FuzzyArt:
 		self.min = np.ones((len(x[0])*2,1))
 		self.normI = np.ones((len(x[0])*2,1))
 		self.normT = np.ones((len(x[0])*2,1))
-		self.ch = np.zeros((len(x)*2,1))
-		self.m = np.zeros((len(x)*2,1))	
+		self.ch = np.zeros((len(T[0])*2,1))
+		self.m = np.zeros((len(T[0])*2,1))
 		
 		# State of Training
-		self.training_state = update
+		self.training_state = update	
 		
 	def create(self,I,T,nc,j):
 		"""
@@ -68,21 +68,24 @@ class FuzzyArt:
 		return T
 	
 	def match_choice(self,c,norm,normI,normT):
+	
+		"""
+        Checks match criterion
+        Compute choice equation
+        Discovers best choice
 
-		"""
-		Checks match criterion
-		Compute choice equation
-		Discovers best choice
-		:param norm: minimum of input and templates
-		:param normI: norm of input
-		:return: returns category choice location
-		"""
+        :param norm: minimum of input and templates
+        :param normI: norm of input
+        
+        :return: returns category choice location
+        """
+        
 		self.m[c] = norm/normI
 		if self.m[c] < self.rho:
 			self.ch[c] = 0
 		else:
 			self.ch[c] = norm/(self.beta + normT)
-			
+		
 		return self.ch.argmax(axis=0)
 	
 	def template_options_loop(self,cmax,chmax,ch,nc):
@@ -96,6 +99,9 @@ class FuzzyArt:
 		:param nc:		Number of Categories	
 		
 		:return cmax:	Maximum choice template location		
+		
+		while loop end when
+		-> 
 		"""
 		
 		neg = 0
@@ -113,7 +119,7 @@ class FuzzyArt:
 		
 		return cmax				
 	
-	def art_train(self,I,T):
+	def art_train(self,I,T,T_length):
 		"""
 		Train ART - Create Template Matrix
 		
@@ -127,14 +133,14 @@ class FuzzyArt:
 	
 		''' Set first template as first input '''
 		if self.training_state:
-			nc = len(T)
+			nc = T_length
 		else:
 			T[:,0] = I[:,0]
 			nc = 1
-		
+			
 		for ep in range(self.nep):
 			''' Initialize number of templates (nc) and loop (j) '''
-			nc,j = 1,0
+			j = 0
 			
 			while j < len(I[0]):
 				#print self.min
@@ -142,7 +148,7 @@ class FuzzyArt:
 					''' Initialize chmax and cmax '''
 					chmax = -1
 					cmax = -1
-				
+
 					''' i loops through rows of matrix '''
 					for i in range(len(I)):
 						''' min of input (I[j]) and template (T[c]) '''
@@ -166,11 +172,11 @@ class FuzzyArt:
 					T = self.update(I,T,j,cmax)
 				
 				j += 1
-		
-		return np.transpose(T[:,:nc])
-	
 
-def art_train(x,rho=0.9,beta=0.000001,alpha=1.0,nep=1,Tm=None,update=False):
+		return np.transpose(T[:,:nc])
+
+
+def art_train(x,Tm=[],update=False,rho=0.9,beta=0.000001,alpha=1.0,nep=1):
 
 	I = np.transpose(np.hstack([x,1 - x]))
 	if update:
@@ -180,9 +186,11 @@ def art_train(x,rho=0.9,beta=0.000001,alpha=1.0,nep=1,Tm=None,update=False):
 		T = np.ones((len(x[0])*2,len(x)*2))
 	
 	ann = FuzzyArt(x,T,rho,beta,alpha,nep,update)
-	T = ann.art_train(I,T)
+	T = ann.art_train(I,T,len(Tm))
 	
 	return T
+
+
 
 if __name__ == '__main__':
     art_train()
