@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from distutils.core import Extension
 
 DISTNAME = 'art-python'
-VERSION = '0.0.2'
+VERSION = '0.0.3'
 PACKAGES = ['art']
 EXTENSIONS = []
 DESCRIPTION = 'Python package'
