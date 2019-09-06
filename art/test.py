@@ -18,7 +18,7 @@ class FuzzyArt:
 
 	"""
 
-	def __init__(self,y,I,rho,beta,alpha,nep):
+	def __init__(self,y,I,T,rho,beta,alpha,nep):
 		
 		# Parameters
 		self.rho = rho			# Free Parameter
@@ -30,8 +30,8 @@ class FuzzyArt:
 		self.min = np.ones((len(y[0])*2,1))
 		self.normI = np.ones((len(y[0])*2,1))
 		self.normT = np.ones((len(y[0])*2,1))
-		self.ch = np.zeros((len(y)*2,1))
-		self.m = np.zeros((len(y)*2,1))
+		self.ch = np.zeros((len(T)*2,1))
+		self.m = np.zeros((len(T)*2,1))
 		
 		# Initialize Input - Category Designation
 		self.icaddt = np.zeros((1,len(y)))
@@ -97,10 +97,9 @@ class FuzzyArt:
 def art_test(y,T,rho=0.9,beta=0.000001,alpha=1.0,nep=1):
 
 	I = np.transpose(np.hstack([y,1 - y]))
-	
 	T = np.transpose(T)
 	
-	ann = FuzzyArt(y,I,rho,beta,alpha,nep)
+	ann = FuzzyArt(y,I,T,rho,beta,alpha,nep)
 	cat = ann.art_test(I,T)
 	
 	C = np.hstack([cat,y])
