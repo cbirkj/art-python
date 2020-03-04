@@ -30,8 +30,8 @@ class FuzzyArt:
 		self.min = np.ones((len(y[0])*2,1))
 		self.normI = np.ones((len(y[0])*2,1))
 		self.normT = np.ones((len(y[0])*2,1))
-		self.ch = np.zeros((len(y)*2,1))
-		self.m = np.zeros((len(y)*2,1))
+		self.ch = np.zeros((len(T)*2,1))
+		self.m = np.zeros((len(T)*2,1))
 		
 		# Initialize Input - Category Designation
 		self.icaddt = np.zeros((1,len(y)))
