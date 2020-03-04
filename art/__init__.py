@@ -1,5 +1,5 @@
-from art import train
-from art import test
+from train import art_train
+from test import art_test
 
 __version__ = '0.1.0'
 
