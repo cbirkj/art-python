@@ -1,15 +1,6 @@
 #!/usr/bin/env python
 
-import time
-import datetime
-import math
-import csv
-import random
-import string
-import numpy as np
 import pandas as pd
-from pandas import DataFrame, read_csv
-import matplotlib.pyplot as plt
 
 from train import art_train
 from test import art_test
