@@ -45,7 +45,7 @@ class FuzzyArt:
 		:param I:		Input
 		:param T: 		Template
 		"""
-	
+
 		''' Set first template as first input '''
 		Tt = np.ones((len(I[0]),len(T)))
 		

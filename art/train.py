@@ -68,24 +68,24 @@ class FuzzyArt:
 		return T
 	
 	def match_choice(self,c,norm,normI,normT):
-	
-		"""
-        Checks match criterion
-        Compute choice equation
-        Discovers best choice
 
-        :param norm: minimum of input and templates
-        :param normI: norm of input
-        
-        :return: returns category choice location
-        """
-        
+		"""
+		Checks match criterion
+		Compute choice equation
+		Discovers best choice
+
+		:param norm: minimum of input and templates
+		:param normI: norm of input
+
+		:return: returns category choice location
+		"""
+
 		self.m[c] = norm/normI
 		if self.m[c] < self.rho:
 			self.ch[c] = 0
 		else:
 			self.ch[c] = norm/(self.beta + normT)
-		
+
 		return self.ch.argmax(axis=0)
 	
 	def template_options_loop(self,cmax,chmax,ch,nc):
