@@ -110,5 +110,5 @@ def art_test(y,T,rho=0.9,beta=0.000001,alpha=1.0,nep=1):
 
 
 
-if __name__ == '__main__':
-    art_test()
+#if __name__ == '__main__':
+#    art_test()

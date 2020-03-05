@@ -119,7 +119,7 @@ class FuzzyArt:
 		
 		return cmax				
 	
-	def art_train(self,I,T,T_length):
+	def art_train_function(self,I,T,T_length):
 		"""
 		Train ART - Create Template Matrix
 		
@@ -186,11 +186,11 @@ def art_train(x,Tm=[],update=False,rho=0.9,beta=0.000001,alpha=1.0,nep=1):
 		T = np.ones((len(x[0])*2,len(x)*2))
 	
 	ann = FuzzyArt(x,T,rho,beta,alpha,nep,update)
-	T = ann.art_train(I,T,len(Tm))
+	T = ann.art_train_function(I,T,len(Tm))
 	
 	return T
 
 
 
-if __name__ == '__main__':
-    art_train()
+#if __name__ == '__main__':
+#    art_train()
